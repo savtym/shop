@@ -1,0 +1,9 @@
+{
+  "dev": {
+    "driver": "pg",
+    "user": "savtym",
+    "password": "",
+    "host": "localhost",
+    "database": "spz"
+  }
+}
