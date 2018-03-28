@@ -3,10 +3,27 @@ const jwt = require('jsonwebtoken');
 
 const addSalt = '‘ß˚ç';
 
-const GET_USER_DB = 'SELECT * FROM users WHERE email = $1';
+const GET_USER_DB = (param) => `SELECT * FROM users WHERE ${param} = $1`;
 const INSERT_USER_DB = 'INSERT INTO users (email, username, token, hash, salt) VALUES ($1, $2, $3, $4, $5)';
 
 class User {
+    static async permissions(req, res) {
+        const {data, err} = await this.db.query(GET_USER_DB('token'), [req.token]);
+
+        if (err) {
+            res.status(400).json(err.message);
+            return false;
+        }
+
+        if (data.rows.length === 0) {
+            res.status(401).json('');
+            return false;
+        }
+
+        return true;
+    }
+
+
     static async signUpUser(req, res) {
         const body = req.body;
         let answer = await User.conditionUser(body, this.db);
@@ -39,19 +56,19 @@ class User {
 
     static async signInUser(req, res) {
         const {email, password} = req.body;
-        const answer = await this.db.query(GET_USER_DB, [email]);
+        const {data, err} = await this.db.query(GET_USER_DB('email'), [email]);
 
-        if (answer.err) {
-            res.status(400).json(answer.err.message);
+        if (err) {
+            res.status(400).json(err.message);
             return;
         }
 
-        if (answer.rows.length === 0) {
+        if (data.rows.length === 0) {
             res.status(400).json(`This email ${email} isn't exist.`);
             return;
         }
 
-        const user = answer.rows[0];
+        const user = data.rows[0];
         if (bcrypt.compareSync(password + addSalt, user.hash)) {
             res.send(user.token);
         } else {
