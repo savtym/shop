@@ -33,8 +33,8 @@ exports.up = function(db, callback) {
         hash: {type: 'string', notNull: true},
         salt: {type: 'string', notNull: true}
     }, () => {
-        for (let user of defaultValues) {
-            db.insert('users', ['email', 'username', 'token', 'hash', 'salt'], user, callback);
+        for (let w of defaultValues) {
+            db.insert('users', ['email', 'username', 'token', 'hash', 'salt'], w, callback);
         }
     });
 };

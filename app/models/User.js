@@ -8,19 +8,19 @@ const INSERT_USER_DB = 'INSERT INTO users (email, username, token, hash, salt) V
 
 class User {
     static async permissions(req, res) {
-        const {data, err} = await this.db.query(GET_USER_DB('token'), [req.token]);
+        const {rows, err} = await this.db.query(GET_USER_DB('token'), [req.token]);
 
         if (err) {
             res.status(400).json(err.message);
             return false;
         }
 
-        if (data.rows.length === 0) {
+        if (rows.length === 0) {
             res.status(401).json('');
             return false;
         }
 
-        return true;
+        return rows[0];
     }
 
 
@@ -56,19 +56,19 @@ class User {
 
     static async signInUser(req, res) {
         const {email, password} = req.body;
-        const {data, err} = await this.db.query(GET_USER_DB('email'), [email]);
+        const {rows, err} = await this.db.query(GET_USER_DB('email'), [email]);
 
         if (err) {
             res.status(400).json(err.message);
             return;
         }
 
-        if (data.rows.length === 0) {
+        if (rows.length === 0) {
             res.status(400).json(`This email ${email} isn't exist.`);
             return;
         }
 
-        const user = data.rows[0];
+        const user = rows[0];
         if (bcrypt.compareSync(password + addSalt, user.hash)) {
             res.send(user.token);
         } else {
