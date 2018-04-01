@@ -1,0 +1,8 @@
+@import 'animate.scss';
+
+@mixin animate($animation, $duration: .3s, $delay: 0) {
+  animation-delay: $delay;
+  animation-duration: $duration;
+  animation-name: $animation;
+  animation-fill-mode: both;
+}

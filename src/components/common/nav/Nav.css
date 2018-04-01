@@ -1,0 +1,75 @@
+/*
+    screen sizes
+*/
+/*
+  colors
+*/
+.c-nav {
+  /*
+      Modal styles
+  */
+  /* Position and sizing of burger button */
+  /* Color/shape of burger icon bars */
+  /* Position and sizing of clickable cross button */
+  /* Color/shape of close button cross */
+  /* General sidebar styles */
+  /* Morph shape necessary with bubble or elastic */
+  /* Wrapper for item list */
+  /* Styling of overlay */ }
+  .c-nav li {
+    position: relative; }
+    .c-nav li:first-child {
+      margin-bottom: 40px; }
+    .c-nav li i {
+      margin-right: 10px; }
+    .c-nav li a {
+      display: block;
+      padding: 15px 20px;
+      color: #ddd;
+      letter-spacing: .2px;
+      transition: all .3s ease-in-out; }
+      .c-nav li a:hover {
+        color: #f5f5f5;
+        text-decoration: none;
+        background-color: #20a8d8; }
+    .c-nav li.active i {
+      color: #67c2dc; }
+    .c-nav li.active a {
+      color: #fff;
+      cursor: default; }
+      .c-nav li.active a:hover {
+        text-decoration: none;
+        background-color: #34444c; }
+  .c-nav .bm-menu-wrap {
+    top: 53px;
+    left: 0;
+    width: 225px !important;
+    height: calc(100vh - 53px);
+    padding-bottom: 53px;
+    background-color: #34444c; }
+  .c-nav .bm-burger-button {
+    position: relative;
+    margin-left: 40px;
+    width: 26px;
+    height: 23px;
+    background: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23536c79' stroke-width='2.25' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") no-repeat center center; }
+  .c-nav .bm-burger-bars {
+    height: 2px !important;
+    border-radius: 3px;
+    background: #546c78;
+    display: none; }
+  .c-nav .bm-cross-button {
+    display: none;
+    height: 24px;
+    width: 24px; }
+  .c-nav .bm-cross {
+    display: none; }
+  .c-nav .bm-menu {
+    font-size: 1.15em;
+    background: #29363d; }
+  .c-nav .bm-morph-shape {
+    fill: #373a47; }
+  .c-nav .bm-item-list {
+    color: #b8b7ad; }
+  .c-nav .bm-overlay {
+    display: none; }

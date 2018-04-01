@@ -1,0 +1,248 @@
+@import '../../node_modules/simple-line-icons/css/simple-line-icons.css';
+
+@import 'reset.scss';
+@import 'fonts.scss';
+@import 'variables.scss';
+@import 'mixins.scss';
+
+/* Custom Styles */
+
+body {
+  font: 400 14px 'OpenSans-Regular';
+  overflow-x: hidden;
+  background: #e4e5e6;
+}
+
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  padding-top: 55px;
+  flex: 1;
+  transition: all .5s;
+  &.active {
+    margin-left: 225px;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  padding: 30px;
+}
+
+.pd-content {
+  padding: 0 40px;
+}
+
+
+.table {
+  background: #fff;
+  
+  thead {
+    background-color: $darkBlue;
+    color: #fff;
+  }
+
+  tbody {
+    tr {
+      &:hover {
+        background-color: #E1F5FE;
+      }
+    }
+  }
+}
+
+h1 {
+  line-height: 1;
+  font: 400 36px 'OpenSans-Light';
+}
+
+h2 {
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 22px;
+}
+
+h4 {
+  color: $darkBlue;
+  font-size: 18px;
+}
+
+a {
+  color: $darkBlue;
+  transition: all .3s;
+  &:hover {
+    color: $darkBlue;
+  }
+}
+
+li {
+  font-size: 14px;
+}
+
+button {
+  cursor: pointer;
+}
+
+
+/*
+    Bootstrap custom styles
+*/
+
+
+.tooltip {
+  &.right .tooltip-arrow {
+    border-right-color: #29a1ce;
+  }
+
+  .tooltip-inner {
+    background: #29a1ce;
+  }
+}
+
+
+.form-control {
+  border: 2px solid $blue;
+  border-radius: 0;
+}
+
+.btn-xs,
+.btn-group-xs > .btn {
+  font-size: 14px;
+}
+
+
+.btn,
+.btn-xs,
+.btn-group-xs > .btn {
+  border: 2px solid $blue;
+  padding: 5px 12px;
+  border-radius: 0;
+  box-sizing: border-box;
+  &.btn-default {
+    background: $lightBlue;
+  }
+  &.btn-success {
+    border-color: #399358;
+  }
+  &.btn-apply,
+  &.btn-compare {
+    color: #fff;
+    padding-left: 80px;
+    padding-right: 80px;
+    border-radius: 3px;
+  }
+  &.btn-compare {
+    background: #32A2CC;
+    border: 1px solid #32A2CC;
+  }
+  &.btn-apply {
+    background: #32CCAF;
+    border: 1px solid #32CCAF;
+  }
+  &.btn-primary {
+    background: #29a1ce;
+    border-color: transparent;
+    &:hover {
+      background: $darkBlue;
+      &.active {
+        cursor: default;
+      }
+    }
+    &.active {
+      background: $darkBlue;
+    }
+  }
+}
+
+.btn-group-lg > .btn,
+.btn-lg {
+  padding: 14px 16px;
+  border: 0;
+  border-radius: 0;
+}
+
+.dropdown-menu {
+  border: 2px solid $blue;
+  border-radius: 0;
+}
+
+
+.checkbox {
+  position: relative;
+  padding-left: 20px;
+  display: inline-block;
+  &.active {
+    &:hover::before {
+      box-shadow: none;
+    }
+    &:before {
+      border: 1px solid #6b92b0;
+      background: #6b92b0;
+      box-shadow: none;
+    }
+    &:after {
+      opacity: 1;
+    }
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #b3b3b3;
+    border-radius: 4px;
+    transform: translateY(-50%);
+    box-shadow: inset 0 2px 3px -2px #b3b3b3;
+  }
+  &:after {
+    content: '';
+    width: 8px;
+    height: 5px;
+    position: absolute;
+    top: 44%;
+    left: 5px;
+    border: 2px solid #fcfff4;
+    border-top: none;
+    border-right: none;
+    background: transparent;
+    opacity: 0;
+    transform: rotate(-45deg) translateY(-50%);
+  }
+  &:hover::before {
+    box-shadow: 0 0 8px rgba(107, 146, 176, .6);
+  }
+
+  input[type=checkbox] {
+    display: none;
+  }
+}
+
+input[type="checkbox"]:checked + label {
+  background-color: #6b92b0;
+}
+
+
+::-webkit-input-placeholder {
+  font-style: italic;
+}
+:-moz-placeholder {
+  font-style: italic;
+}
+::-moz-placeholder {
+  font-style: italic;
+}
+:-ms-input-placeholder {
+  font-style: italic;
+}

@@ -1,0 +1,363 @@
+@import url(../../node_modules/simple-line-icons/css/simple-line-icons.css);
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  text-decoration: none;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul, li {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* ----------------------------------------------------------------------------------------------------
+Super Form Reset
+A couple of things to watch out for:
+- IE8: If a text input doesn't have padding on all sides or none the text won't be centered.
+- The default border sizes on text inputs in all UAs seem to be slightly different. You're better off using custom borders.
+- You NEED to set the font-size and family on all form elements
+- Navigation inputs need to have their appearance reset and the box-sizing set to content-box to match other UAs
+- You can style the upload button in webkit using ::-webkit-file-upload-button
+- ::-webkit-file-upload-button selectors can't be used in the same selector as normal ones. FF and IE freak out.
+- IE: You don't need to fake inline-block with labels and form controls in IE. They function as inline-block.
+- By turning off ::-webkit-navigation-decoration, it removes the extra whitespace on the left on navigation inputs
+----------------------------------------------------------------------------------------------------*/
+input,
+label,
+select,
+button,
+textarea {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+  background: none; }
+
+/* Box Sizing Reset
+-----------------------------------------------*/
+/* All of our custom controls should be what we expect them to be */
+input,
+textarea {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box; }
+
+/* These elements are usually rendered a certain way by the browser */
+button,
+input[type=reset],
+input[type=button],
+input[type=submit],
+input[type=checkbox],
+input[type=radio],
+select {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+/* Navigation Input
+-----------------------------------------------*/
+/* Make webkit render the navigation input like a normal text field */
+input[type=search] {
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box; }
+
+/* Turn off the recent navigation for webkit. It adds about 15px padding on the left */
+::-webkit-search-decoration {
+  display: none; }
+
+/* Buttons
+-----------------------------------------------*/
+button,
+input[type="reset"],
+input[type="button"],
+input[type="submit"] {
+  /* Fix IE7 display bug */
+  overflow: visible;
+  width: auto; }
+  button:focus,
+  input[type="reset"]:focus,
+  input[type="button"]:focus,
+  input[type="submit"]:focus {
+    outline: 0; }
+
+/* IE8 and FF freak out if this rule is within another selector */
+::-webkit-file-upload-button {
+  padding: 0;
+  border: 0;
+  background: none; }
+
+/* Textarea
+-----------------------------------------------*/
+textarea {
+  /* Move the label to the top */
+  vertical-align: top;
+  /* Turn off scroll bars in IE unless needed */
+  overflow: auto; }
+
+/* Selects
+-----------------------------------------------*/
+select[multiple] {
+  /* Move the label to the top */
+  vertical-align: top; }
+
+@font-face {
+  font-family: 'OpenSans-Bold';
+  src: url("../fonts/OpenSans-Bold.ttf") format("truetype"); }
+
+@font-face {
+  font-family: 'OpenSans-Regular';
+  src: url("../fonts/OpenSans-Regular.ttf") format("truetype"); }
+
+@font-face {
+  font-family: 'OpenSans-Light';
+  src: url("../fonts/OpenSans-Light.ttf") format("truetype"); }
+
+/*
+    screen sizes
+*/
+/*
+  colors
+*/
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    visibility: hidden; }
+  to {
+    opacity: 1;
+    visibility: visible; } }
+
+/* Custom Styles */
+body {
+  font: 400 14px 'OpenSans-Regular';
+  overflow-x: hidden;
+  background: #e4e5e6; }
+
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column; }
+
+main {
+  padding-top: 55px;
+  flex: 1;
+  transition: all .5s; }
+  main.active {
+    margin-left: 225px; }
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  padding: 30px; }
+
+.pd-content {
+  padding: 0 40px; }
+
+.table {
+  background: #fff; }
+  .table thead {
+    background-color: #546c78;
+    color: #fff; }
+  .table tbody tr:hover {
+    background-color: #E1F5FE; }
+
+h1 {
+  line-height: 1;
+  font: 400 36px 'OpenSans-Light'; }
+
+h2 {
+  font-size: 36px; }
+
+h3 {
+  font-size: 22px; }
+
+h4 {
+  color: #546c78;
+  font-size: 18px; }
+
+a {
+  color: #546c78;
+  transition: all .3s; }
+  a:hover {
+    color: #546c78; }
+
+li {
+  font-size: 14px; }
+
+button {
+  cursor: pointer; }
+
+/*
+    Bootstrap custom styles
+*/
+.tooltip.right .tooltip-arrow {
+  border-right-color: #29a1ce; }
+
+.tooltip .tooltip-inner {
+  background: #29a1ce; }
+
+.form-control {
+  border: 2px solid #c2cfd6;
+  border-radius: 0; }
+
+.btn-xs,
+.btn-group-xs > .btn {
+  font-size: 14px; }
+
+.btn,
+.btn-xs,
+.btn-group-xs > .btn {
+  border: 2px solid #c2cfd6;
+  padding: 5px 12px;
+  border-radius: 0;
+  box-sizing: border-box; }
+  .btn.btn-default,
+  .btn-xs.btn-default,
+  .btn-group-xs > .btn.btn-default {
+    background: #f0f3f5; }
+  .btn.btn-success,
+  .btn-xs.btn-success,
+  .btn-group-xs > .btn.btn-success {
+    border-color: #399358; }
+  .btn.btn-apply, .btn.btn-compare,
+  .btn-xs.btn-apply,
+  .btn-xs.btn-compare,
+  .btn-group-xs > .btn.btn-apply,
+  .btn-group-xs > .btn.btn-compare {
+    color: #fff;
+    padding-left: 80px;
+    padding-right: 80px;
+    border-radius: 3px; }
+  .btn.btn-compare,
+  .btn-xs.btn-compare,
+  .btn-group-xs > .btn.btn-compare {
+    background: #32A2CC;
+    border: 1px solid #32A2CC; }
+  .btn.btn-apply,
+  .btn-xs.btn-apply,
+  .btn-group-xs > .btn.btn-apply {
+    background: #32CCAF;
+    border: 1px solid #32CCAF; }
+  .btn.btn-primary,
+  .btn-xs.btn-primary,
+  .btn-group-xs > .btn.btn-primary {
+    background: #29a1ce;
+    border-color: transparent; }
+    .btn.btn-primary:hover,
+    .btn-xs.btn-primary:hover,
+    .btn-group-xs > .btn.btn-primary:hover {
+      background: #546c78; }
+      .btn.btn-primary:hover.active,
+      .btn-xs.btn-primary:hover.active,
+      .btn-group-xs > .btn.btn-primary:hover.active {
+        cursor: default; }
+    .btn.btn-primary.active,
+    .btn-xs.btn-primary.active,
+    .btn-group-xs > .btn.btn-primary.active {
+      background: #546c78; }
+
+.btn-group-lg > .btn,
+.btn-lg {
+  padding: 14px 16px;
+  border: 0;
+  border-radius: 0; }
+
+.dropdown-menu {
+  border: 2px solid #c2cfd6;
+  border-radius: 0; }
+
+.checkbox {
+  position: relative;
+  padding-left: 20px;
+  display: inline-block; }
+  .checkbox.active:hover::before {
+    box-shadow: none; }
+  .checkbox.active:before {
+    border: 1px solid #6b92b0;
+    background: #6b92b0;
+    box-shadow: none; }
+  .checkbox.active:after {
+    opacity: 1; }
+  .checkbox:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #b3b3b3;
+    border-radius: 4px;
+    transform: translateY(-50%);
+    box-shadow: inset 0 2px 3px -2px #b3b3b3; }
+  .checkbox:after {
+    content: '';
+    width: 8px;
+    height: 5px;
+    position: absolute;
+    top: 44%;
+    left: 5px;
+    border: 2px solid #fcfff4;
+    border-top: none;
+    border-right: none;
+    background: transparent;
+    opacity: 0;
+    transform: rotate(-45deg) translateY(-50%); }
+  .checkbox:hover::before {
+    box-shadow: 0 0 8px rgba(107, 146, 176, 0.6); }
+  .checkbox input[type=checkbox] {
+    display: none; }
+
+input[type="checkbox"]:checked + label {
+  background-color: #6b92b0; }
+
+::-webkit-input-placeholder {
+  font-style: italic; }
+
+:-moz-placeholder {
+  font-style: italic; }
+
+::-moz-placeholder {
+  font-style: italic; }
+
+:-ms-input-placeholder {
+  font-style: italic; }

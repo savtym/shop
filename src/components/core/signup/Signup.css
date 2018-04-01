@@ -1,0 +1,100 @@
+/*
+    screen sizes
+*/
+/*
+  colors
+*/
+.c-signup {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+  .c-signup .tooltip {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    display: none;
+    color: #fff;
+    padding: 3px 6px;
+    max-width: 200px;
+    border-radius: 5px;
+    transform: translate(calc(100% + 5px), -50%);
+    background: #B71C1C;
+    transition: all .3s ease-in-out; }
+    .c-signup .tooltip:hover {
+      box-shadow: 0 0 1px #000; }
+  .c-signup form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 320px;
+    padding-bottom: 60px;
+    width: 100%;
+    text-align: center; }
+    .c-signup form .check .err:before {
+      background: #f66d6e; }
+    .c-signup form .check input:active + span,
+    .c-signup form .check input:focus + span {
+      display: block; }
+    .c-signup form .check .success:after, .c-signup form .check .success:before {
+      background: #52bc77; }
+    .c-signup form label {
+      margin-top: 10px;
+      position: relative;
+      display: block; }
+      .c-signup form label:after, .c-signup form label:before {
+        content: '';
+        position: absolute;
+        display: block;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        transition: all .3s ease-in-out; }
+      .c-signup form label:before {
+        background-color: #eee; }
+      .c-signup form label:after {
+        left: 50%;
+        width: 0;
+        transform: translateX(-50%); }
+      .c-signup form label:hover:after, .c-signup form label:active:after, .c-signup form label:focus:after {
+        width: 100%;
+        background: #000; }
+    .c-signup form input {
+      text-align: center;
+      padding: 0 20px;
+      height: 36px;
+      font: 400 16px 'OpenSans-Light';
+      caret-color: #212121;
+      width: 100%;
+      box-sizing: border-box; }
+      .c-signup form input[disabled] {
+        background: #E0E0E0;
+        cursor: not-allowed; }
+      .c-signup form input ::-webkit-input-placeholder {
+        color: #E0E0E0; }
+      .c-signup form input ::-moz-placeholder {
+        color: #E0E0E0; }
+      .c-signup form input :-ms-input-placeholder {
+        color: #E0E0E0; }
+      .c-signup form input :-moz-placeholder {
+        color: #E0E0E0; }
+      .c-signup form input:hover, .c-signup form input:active, .c-signup form input:focus {
+        outline: none; }
+    .c-signup form button {
+      margin-top: 20px;
+      color: #fff;
+      height: 36px;
+      width: 100%;
+      font-size: 16px;
+      background: #52bc77;
+      cursor: pointer;
+      transition: all .3s ease-in; }
+      .c-signup form button[disabled] {
+        background: #546c78;
+        cursor: not-allowed; }
+        .c-signup form button[disabled]:hover {
+          background: #546c78; }
+      .c-signup form button:hover {
+        background: #1B5E20; }

@@ -1,0 +1,61 @@
+@import "variables.scss";
+
+
+.c-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 55px;
+  padding: 0 15px;
+  background: #fff;
+  border-bottom: 2px solid $blue;
+  z-index: 9999;
+
+  .left {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+
+    & > ul {
+      padding-left: 20px;
+      li {
+        padding: 0 15px;
+      }
+    }
+  }
+
+  .logo {
+    display: block;
+    width: 115px;
+    height: 36px;
+    background: url('~images/logo.svg') no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .right {
+    padding-right: 20px;
+
+    .logout {
+      margin-right: 20px;
+    }
+
+    .bell-button {
+      position: relative;
+      span {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 0 6px 2px;
+        border-radius: 10px;
+        background: $red;
+      }
+    }
+  }
+}
