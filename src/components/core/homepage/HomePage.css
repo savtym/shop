@@ -4,5 +4,11 @@
 /*
   colors
 */
-.c-homepage .c-preloader {
-  margin-top: 5%; }
+.c-homepage {
+  padding: 20px;
+  background: #fff; }
+  .c-homepage .c-preloader {
+    margin-top: 0;
+    padding-top: 40px; }
+  .c-homepage .c-product {
+    margin-top: 20px; }

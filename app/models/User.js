@@ -50,7 +50,7 @@ class User {
             return;
         }
 
-        res.send(token);
+        res.json({email, username, token});
     }
 
 
@@ -70,9 +70,9 @@ class User {
 
         const user = rows[0];
         if (bcrypt.compareSync(password + addSalt, user.hash)) {
-            res.send(user.token);
+            res.json({email:user.email, username: user.username, token: user.token});
         } else {
-            res.send('Wrong password.');
+            res.status(400).json('Wrong password.');
         }
     }
 
@@ -95,7 +95,7 @@ class User {
                 resolve({err: {message: 'Name, email or pass are wrong'}});
             }
 
-            resolve(db.query(GET_USER_DB, [email]));
+            resolve(db.query(GET_USER_DB('email'), [email]));
         });
     }
 

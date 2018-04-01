@@ -1,0 +1,77 @@
+@import "variables.scss";
+@import "mixins.scss";
+
+.c-modal {
+  position: relative;
+  background: #fff;
+  width: 1410px;
+  border-radius: 3px;
+  box-shadow: 0 0 10px -2px #000;
+  outline: none;
+  min-height: 0;
+  max-height: calc(100vh - 100px);
+
+  @media #{$large} {
+    width: 1170px;
+  }
+  @media #{$desktop} {
+    width: calc(100% - 30px);
+    max-height: calc(100vh - 60px);
+  }
+  @media #{$phone} {
+    width: 94.75%;
+  }
+
+  .modal-header,
+  .modal-content,
+  .modal-footer {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    @media #{$phone} {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: -32px;
+    right: -30px;
+    font-size: 28px;
+    font-weight: 700;
+    font-family:Verdana, sans-serif;
+    color: $gray;
+    @media #{$phone} {
+      top: -40px;
+      right: 0;
+    }
+    &:hover {
+      color: $darkBlue;
+    }
+  }
+
+  .modal-header {
+    position: relative;
+    padding-right: 40px;
+    border-bottom: 1px solid $gray;
+  }
+
+  .modal-footer {
+    border-top: 1px solid $gray;
+  }
+}
+
+.ReactModal__Overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, .85) !important;
+  @include animate('fadeIn');
+}
+
+
+.ReactModal__Body--open {
+  overflow: hidden;
+}

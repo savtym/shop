@@ -1,7 +1,7 @@
 const config = {
 	apiDomain: 'http://localhost:8080',
 	serverResponseStatus: {
-		'401' : ['/signin']
+		'401' : '/signin'
 	}
 };
 

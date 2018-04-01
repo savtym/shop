@@ -41,11 +41,11 @@
         text-decoration: none;
         background-color: #34444c; }
   .c-nav .bm-menu-wrap {
-    top: 53px;
+    top: 55px;
     left: 0;
     width: 225px !important;
-    height: calc(100vh - 53px);
-    padding-bottom: 53px;
+    height: calc(100vh - 55px);
+    padding-bottom: 55px;
     background-color: #34444c; }
   .c-nav .bm-burger-button {
     position: relative;

@@ -2,8 +2,9 @@
   "dev": {
     "driver": "pg",
     "user": "savtym",
-    "password": "",
+    "password": "test",
     "host": "localhost",
+    "port": 5432,
     "database": "spz"
   }
 }

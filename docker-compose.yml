@@ -1,28 +1,28 @@
 version: '2'
 services:
-#  api:
-#    build: .
-#    volumes:
-#      - .:/app
-#    image: shop_api
-#    ports:
-#      - "8080:8080"
-#    depends_on:
-#      - postgres
-#    environment:
-#      - JWT_SECRET=M7BUb2Oyhll2ciPsWKQw0KZPJ9CEoc9gcVpVb1uaVCVyHKTB9XiJs0BTngtep45
+  api:
+    build: .
+    volumes:
+      - .:/app
+    image: shop_api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      - JWT_SECRET=M7BUb2Oyhll2ciPsWKQw0KZPJ9CEoc9gcVpVb1uaVCVyHKTB9XiJs0BTngtep45
 
-  migration:
-      image: shop_api
-      command: db-migrate up
-      links:
-        - postgres
+#  migration:
+#      image: shop_api
+#      command: db-migrate up
+#      depends_on:
+#        - postgres
 
   postgres:
     ports:
-      - "5432:5432"
+      - "5432"
     image: postgres:9.6.2-alpine
     environment:
       POSTGRES_USER: savtym
       POSTGRES_DB: spz
-      POSTGRES_PASSWORD: ''
+      POSTGRES_PASSWORD: 'test'

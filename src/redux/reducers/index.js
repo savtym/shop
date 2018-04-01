@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
-import token from './token';
+import user from './user';
+import modalError from './modalError';
 import burgerMenu from './burgerMenu';
 
 export default combineReducers({
-	token,
+	user,
+	modalError,
 	burgerMenu
 });

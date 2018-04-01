@@ -1,0 +1,87 @@
+@import "variables.scss";
+
+
+.c-product {
+  .content {
+    position: relative;
+    padding-top: 20px;
+    background: $lightBlue;
+    border: 1px solid $blue;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+
+  .block-image {
+    text-align: center;
+  }
+
+  .block-info {
+    margin-top: 10px;
+
+    h3 {
+      padding: 0 20px;
+    }
+  }
+
+  .description {
+    padding: 10px 20px;
+
+    span {
+      color: $darkBlue;
+    }
+
+    p {
+      margin-top: 5px;
+    }
+  }
+
+  .footer-product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: $black;
+    background: $blue;
+
+    .btn {
+      border-radius: 5px;
+      font-size: 12px;
+      color: #fff;
+      background: $darkBlue;
+      transition: all .3s ease-in-out;
+
+      &.btn-add-cart {
+        &:hover:not([disabled]) {
+          background: $darkGreen;
+        }
+      }
+
+      &.btn-remove-cart {
+        &:hover:not([disabled]) {
+          background: $darkRed;
+        }
+      }
+
+      &[disabled] {
+        background: $gray;
+      }
+
+
+    }
+  }
+
+  .tooltip {
+    color: #fff;
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 5px;
+
+    &.added {
+      background: $darkGreen;
+    }
+    &.removed {
+      background: $darkRed;
+    }
+  }
+}

@@ -1,0 +1,79 @@
+/*
+    screen sizes
+*/
+/*
+  colors
+*/
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    visibility: hidden; }
+  to {
+    opacity: 1;
+    visibility: visible; } }
+
+.c-modal {
+  position: relative;
+  background: #fff;
+  width: 1410px;
+  border-radius: 3px;
+  box-shadow: 0 0 10px -2px #000;
+  outline: none;
+  min-height: 0;
+  max-height: calc(100vh - 100px); }
+  @media screen and (max-width: 1599px) {
+    .c-modal {
+      width: 1170px; } }
+  @media screen and (max-width: 1199px) {
+    .c-modal {
+      width: calc(100% - 30px);
+      max-height: calc(100vh - 60px); } }
+  @media screen and (max-width: 767px) {
+    .c-modal {
+      width: 94.75%; } }
+  .c-modal .modal-header,
+  .c-modal .modal-content,
+  .c-modal .modal-footer {
+    padding-top: 15px;
+    padding-bottom: 15px; }
+    @media screen and (max-width: 767px) {
+      .c-modal .modal-header,
+      .c-modal .modal-content,
+      .c-modal .modal-footer {
+        padding-top: 10px;
+        padding-bottom: 10px; } }
+  .c-modal .modal-close {
+    position: absolute;
+    top: -32px;
+    right: -30px;
+    font-size: 28px;
+    font-weight: 700;
+    font-family: Verdana, sans-serif;
+    color: #E0E0E0; }
+    @media screen and (max-width: 767px) {
+      .c-modal .modal-close {
+        top: -40px;
+        right: 0; } }
+    .c-modal .modal-close:hover {
+      color: #546c78; }
+  .c-modal .modal-header {
+    position: relative;
+    padding-right: 40px;
+    border-bottom: 1px solid #E0E0E0; }
+  .c-modal .modal-footer {
+    border-top: 1px solid #E0E0E0; }
+
+.ReactModal__Overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.85) !important;
+  animation-delay: 0;
+  animation-duration: 0.3s;
+  animation-name: "fadeIn";
+  animation-fill-mode: both; }
+
+.ReactModal__Body--open {
+  overflow: hidden; }

@@ -1,0 +1,157 @@
+@import 'variables.scss';
+
+/*
+    grid (12 column):
+    @container: 1200px; => padding: 0 15px;
+*/
+
+.container {
+  margin: 0 auto;
+  width: 1440px;
+  padding: 0 15px;
+  box-sizing: border-box;
+
+  @media #{$large} {
+    width: 1200px;
+  }
+
+  @media #{$desktop} {
+    width: 100%;
+  }
+
+  //
+  //@media #{$tablet} {
+  //  width: 720px;
+  //}
+  //
+  //@media #{$phone} {
+  //  width: 100%;
+  //}
+
+  @media #{$mobile} {
+    padding: 0 3.125%;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  @media #{$phone} {
+    flex-wrap: unwrap;
+  }
+}
+
+.col-3,
+.col-3-4,
+.col-4,
+.col-6,
+.col-8,
+.col-9 {
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.col-3,
+.col-3-4 {
+  width: 25%;
+  &:nth-child(4n+1) {
+    padding-left: 0;
+  }
+  &:nth-child(4n+4) {
+    padding-right: 0;
+  }
+  @media #{$phone} {
+    width: 100%;
+    padding: 0;
+  }
+
+  @media #{$desktop} {
+    &-4 {
+      width: 33.33%;
+      &:nth-child(4n+1) {
+        padding-left: 10px;
+      }
+      &:nth-child(4n+4) {
+        padding-right: 10px;
+      }
+      &:nth-child(3n+1) {
+        padding-left: 0;
+      }
+      &:nth-child(3n+3) {
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+.col-4 {
+  width: 33.33%;
+  &:nth-child(3n+1) {
+    padding-left: 0;
+  }
+  &:nth-child(3n+3) {
+    padding-right: 0;
+  }
+  @media #{$phone} {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.col-6 {
+  width: 50%;
+  &:nth-child(2n+1) {
+    padding-left: 0;
+  }
+  &:nth-child(2n) {
+    padding-right: 0;
+  }
+  @media #{$phone} {
+    width: 100%;
+    padding: 0;
+  }
+
+  @media #{$desktop} {
+    &-4 {
+      width: 33.33%;
+      &:nth-child(3n+1) {
+        padding-left: 0;
+      }
+      &:nth-child(3n+3) {
+        padding-right: 0;
+      }
+    }
+  }
+
+  @media #{$large} {
+    &-3 {
+      width: 25%;
+      &:nth-child(4n+1) {
+        padding-left: 0;
+      }
+      &:nth-child(4n+4) {
+        padding-right: 0;
+      }
+      @media #{$phone} {
+        width: 100%;
+        padding: 0;
+      }
+    }
+  }
+}
+
+.col-8 {
+  width: 66.67%;
+  padding: 0;
+  @media #{$phone} {
+    width: 100%;
+  }
+}
+
+.col-9 {
+  width: 75%;
+  padding: 0; 
+  @media #{$phone} {
+    width: 100%;
+  }
+}

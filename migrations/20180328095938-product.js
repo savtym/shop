@@ -5,9 +5,11 @@ var type;
 var seed;
 
 const defaultValues = [
-  [2, 1, 2, 3, 3],
-  [1, 2, 1, 1, 1],
-  [3, 1, 3, 2, 2]
+  [2, 1, 2, 3, 5, 3],
+  [1, 2, 1, 1, 2, 1],
+  [1, 2, 1, 1, 1, 1],
+  [3, 1, 3, 2, 4, 2],
+  [3, 1, 3, 2, 3, 2]
 ];
 
 /**
@@ -75,6 +77,19 @@ exports.up = function(db, callback) {
                 mapping: 'id'
             }
         },
+        model_id: {
+            type: 'int',
+            notNull: true,
+            foreignKey: {
+                name: 'product_model_id_fk',
+                table: 'model',
+                rules: {
+                    onDelete: 'CASCADE',
+                    onUpdate: 'RESTRICT'
+                },
+                mapping: 'id'
+            }
+        },
         available_id: {
             type: 'int',
             notNull: true,
@@ -90,7 +105,7 @@ exports.up = function(db, callback) {
         },
         description: 'string'
     }, () => {
-        const fields = ['camera_id', 'screen_diagonal_id', 'ram_id', 'manufacture_id', 'available_id'];
+        const fields = ['camera_id', 'screen_diagonal_id', 'ram_id', 'manufacture_id', 'model_id', 'available_id'];
         for (let product of defaultValues) {
             db.insert('product', fields, product, callback);
         }

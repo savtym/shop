@@ -5,8 +5,6 @@ var type;
 var seed;
 
 const defaultValues = [
-    [1, 2],
-    [1, 3]
 ];
 
 /**
@@ -47,10 +45,23 @@ exports.up = function(db, callback) {
               },
               mapping: 'id'
           }
+      },
+      available_id: {
+          type: 'int',
+          notNull: true,
+          foreignKey: {
+              name: 'cart_available_id_fk',
+              table: 'available',
+              rules: {
+                  onDelete: 'CASCADE',
+                  onUpdate: 'RESTRICT'
+              },
+              mapping: 'id'
+          }
       }
   }, () => {
       for (let order of defaultValues) {
-          db.insert('cart', ['user_id', 'product_id'], order, callback);
+          db.insert('cart', ['user_id', 'product_id', 'available_id'], order, callback);
       }
   });
 };

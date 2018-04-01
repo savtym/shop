@@ -2,17 +2,17 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Validate from 'scripts/Validate';
 
-
+import {setUser} from 'redux/actions/user';
 import Preloader from "components/common/preloader/Preloader";
 import request from "redux/actions/authAPI";
-
 import './Signup.css';
 
-const API_GET_TOKEN = '/api/v1/signup';
+const API_SIGNUP_GET_TOKEN = '/api/v1/signup';
+const API_SIGNIN_GET_TOKEN = '/api/v1/signin';
 
 const msgError = {
 	email: 'Email is wrong',
-	userName: 'Login is wrong',
+	username: 'Login is wrong',
 	password: 'Your password is wrong, you need to use min 8 symbols',
 	repeatPassword: 'Password doesn\'t match'
 };
@@ -27,22 +27,36 @@ class SignUp extends Component {
 
 		this.state = {
 			email: '',
-			userName: '',
 			password: '',
-			repeatPassword: '',
 			isDisabledBtn: true,
-			isDisabledRepeatPassword: true,
 			check: {
 				isEmail: false,
-				isUserName: false,
 				isPassword: false,
-				isRepeatPassword: false,
 			},
 			currentPage: redirect ? `${redirect.currentPage}${(redirect.search) ? redirect.search : ''}` : false
 		};
 
+		if (props.token) {
+			this.props.history.push((this.state.currentPage) ? this.state.currentPage : '/');
+		}
+
+
+		if (!props.signin) {
+			Object.assign(this.state, {
+				username: '',
+				repeatPassword: '',
+				isDisabledRepeatPassword: true,
+			});
+			Object.assign(this.state.check, {
+				isUsername: false,
+				isRepeatPassword: false
+			});
+		}
+
+
 		this.handlerClickForm = this.handlerClickForm.bind(this);
 		this.handleChangeInput = this.handleChangeInput.bind(this);
+		this.responseFromServer = this.responseFromServer.bind(this);
 	}
 
 
@@ -60,7 +74,7 @@ class SignUp extends Component {
 				isOk = Validate.email(value);
 				break;
 
-			case 'userName':
+			case 'username':
 				isOk = Validate.userName(value);
 				break;
 
@@ -87,25 +101,24 @@ class SignUp extends Component {
 	handlerClickForm(e) {
 		e.preventDefault();
 
-		const {email, userName, password, repeatPassword} = this.state;
+		const {email, username, password, repeatPassword} = this.state;
 
 		this.props.dispatch(request({
-			data: {email, userName, password, repeatPassword},
-			url: API_GET_TOKEN,
-			success: function (response) {
-				debugger
-			},
-			error: (response) => {
-				console.error(response);
-			}
+			method: 'POST',
+			success: this.responseFromServer,
+			body: {email, username, password, repeatPassword},
+			url: this.props.signin ? API_SIGNIN_GET_TOKEN : API_SIGNUP_GET_TOKEN
 		}));
-
 
 		this.setState({
 			isPreloader: true
 		});
+	}
 
 
+	responseFromServer(user) {
+		this.props.dispatch(setUser(user));
+		this.props.history.push((this.state.currentPage) ? this.state.currentPage : '/');
 	}
 
 
@@ -137,9 +150,12 @@ class SignUp extends Component {
 
 				<form action="">
 					{this.renderInput('email', 'email', 'Email', check.isEmail)}
-					{this.renderInput('text', 'userName', 'Login', check.isUserName)}
-					{this.renderInput('password', 'password', 'Password', check.isPassword)}
 					{
+						this.props.signin || this.renderInput('text', 'username', 'Login', check.isUsername)
+					}
+
+					{this.renderInput('password', 'password', 'Password', check.isPassword)}
+					{ this.props.signin ||
 						this.renderInput(
 							'password',
 							'repeatPassword',
@@ -159,7 +175,7 @@ class SignUp extends Component {
 }
 
 function mapStateToProps(state) {
-	return state.token;
+	return state.user;
 }
 
 export default connect(mapStateToProps)(SignUp);

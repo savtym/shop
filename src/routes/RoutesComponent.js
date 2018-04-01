@@ -3,6 +3,7 @@
 */
 import HomePage from 'components/core/homepage/HomePage';
 import SignUp from 'components/core/signup/SignUp';
+import User from "components/core/user/User";
 
 
 const coreComponents = [{
@@ -13,6 +14,20 @@ const coreComponents = [{
 	exact: true,
 	path: '/signup',
 	component: SignUp
+}, {
+	exact: true,
+	path: '/signin',
+	component: SignUp,
+	props: {
+		signin: true
+	}
+}, {
+	exact: true,
+	path: '/user',
+	component: User,
+	props: {
+		signin: true
+	}
 }];
 
 

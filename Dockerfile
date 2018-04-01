@@ -20,5 +20,6 @@ RUN npm i -g db-migrate-pg
 # Bundle app source
 ADD config/database.json ./
 ADD migrations ./migrations
+ADD app ./app
 
-#CMD [ "npm", "run", "server" ]
+CMD [ "npm", "run", "server" ]

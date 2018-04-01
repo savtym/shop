@@ -1,22 +1,36 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {store, history} from 'index';
-import {removeToken} from 'redux/actions/token';
+import {connect} from 'react-redux';
+import {removeToken} from 'redux/actions/user';
 
 import './Header.css';
-import navList from 'components/common/nav/navList';
 import Nav from 'components/common/nav/Nav';
+import ModalError from 'components/common/modalError/ModalError';
+import navList from 'components/common/nav/navList';
 
 class Header extends Component {
+
+	constructor(props) {
+		super(props);
+
+		this.handleCLickUser = this.handleCLickUser.bind(this);
+		this.handleCLickLogout = this.handleCLickLogout.bind(this);
+	}
+
 
 	static handleChangeNav({isOpen}) {
 		document.querySelector('main').classList[isOpen ? 'add' : 'remove']('active');
 	}
 
 
-	static handleCLickLogout() {
-		store.dispatch(removeToken());
-		history.push('/', {
+	handleCLickUser() {
+
+	}
+
+
+	handleCLickLogout() {
+		this.props.dispatch(removeToken());
+		this.props.history.push('/', {
 			currentPage: window.location.pathname,
 			search: window.location.search
 		});
@@ -37,12 +51,25 @@ class Header extends Component {
 				</div>
 
 				<div className="right">
-					<button className='logout' onClick={Header.handleCLickLogout}>Logout</button>
+
+					{
+						this.props.token ?
+							<Link to='/user'>{this.props.username}</Link> :
+							<Link to='/signin'>Sign in</Link>
+					}
+
 				</div>
+
+				<ModalError />
 
 			</header>
 		);
 	}
 }
 
-export default Header;
+
+function mapStateToProps(state) {
+	return state.user;
+}
+
+export default connect(mapStateToProps)(Header);

@@ -4,6 +4,7 @@
 @import 'fonts.scss';
 @import 'variables.scss';
 @import 'mixins.scss';
+@import 'grid.scss';
 
 /* Custom Styles */
 
@@ -20,7 +21,7 @@ body {
 }
 
 main {
-  padding-top: 55px;
+  padding: 75px 20px 40px;
   flex: 1;
   transition: all .5s;
   &.active {
@@ -79,6 +80,7 @@ a {
   transition: all .3s;
   &:hover {
     color: $darkBlue;
+    text-decoration: underline;
   }
 }
 
@@ -125,6 +127,11 @@ button {
   padding: 5px 12px;
   border-radius: 0;
   box-sizing: border-box;
+  &[disabled] {
+    background: $darkBlue;
+    cursor: not-allowed;
+  }
+
   &.btn-default {
     background: $lightBlue;
   }

@@ -4,7 +4,8 @@ var dbm;
 var type;
 var seed;
 
-const defaultValues = ['Apple', 'Samsung', 'Alcatel'];
+const defaultValuesManufactures = ['Apple', 'Samsung', 'Alcatel'];
+const defaultValuesModels = ['5s', '7', 's8', 's9', 'wq-320'];
 
 /**
   * We receive the dbmigrate dependency from dbmigrate initially.
@@ -20,15 +21,25 @@ exports.up = function(db, callback) {
     return db.createTable('manufacture', {
         id: {type: 'int', primaryKey: true, autoIncrement: true},
         name: {type:'string', unique: true, notNull: true}
-    }, () => {
-        for (let manufacture of defaultValues) {
+    }, () =>
+			db.createTable('model', {
+				id: {type: 'int', primaryKey: true, autoIncrement: true},
+				name: {type:'string', unique: true, notNull: true}
+			},
+
+			() => {
+        for (let manufacture of defaultValuesManufactures) {
             db.insert('manufacture', ['name'], [manufacture], callback);
         }
-    });
+
+        for (let model of defaultValuesModels) {
+            db.insert('model', ['name'], [model], callback);
+        }
+    }));
 };
 
 exports.down = function(db) {
-    return db.dropTable('manufacture');
+    return db.dropTable('manufacture', () => db.dropTable('model'));
 };
 
 exports._meta = {
