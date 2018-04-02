@@ -1,22 +1,47 @@
 const User = require('./User');
-const GET_PRODUCTS_DB = require('./Product').GET_PRODUCTS_DB;
 
-const GET_PRODUCTS_BY_ID = {
-	select: 'ct.counter',
-	join: `
-		JOIN (
-			SELECT ct.product_id, COUNT (*) AS counter
-			FROM cart AS ct
-			WHERE user_id = $1
-			GROUP BY ct.product_id
-		) AS ct ON p.id = ct.product_id
-	`,
-	groupBy: 'ct.counter'
-};
+const GET_PRODUCTS_BY_ID = `
+SELECT 
+	p.id AS product_id,
+	ct.available_id,
+	COUNT (*) AS counter,
+	json_build_object('color', a.name, 'price', a.price, 'storage', a.storage) AS available,
+	p.manufacture,
+	p.ram,
+	p.camera,
+	p.screen_diagonal,
+	p.description
+FROM cart AS ct
+JOIN (
+		SELECT 
+			p.id,
+			m.name AS manufacture,
+			r.size AS ram,
+			c.size AS camera, 
+			sd.size AS screen_diagonal,
+			description 
+		FROM product AS p
+		JOIN camera AS c ON p.camera_id = c.id
+		JOIN screen_diagonal AS sd ON p.screen_diagonal_id = sd.id
+		JOIN ram AS r ON p.ram_id = r.id
+		JOIN manufacture AS m ON p.manufacture_id = m.id
+		GROUP BY p.id, manufacture, ram, camera, screen_diagonal
+	) AS p ON p.id = ct.product_id
+JOIN (
+		SELECT a.id, c.name, a.price, a.storage 
+		FROM available as a 
+		JOIN color as c on c.id = a.color_id
+	) AS a ON ct.available_id = a.id
+WHERE user_id = $1
+GROUP BY p.id, ct.available_id, ct.product_id, p.description, a.name, a.price, a.storage, 
+	p.manufacture, p.ram, p.camera, p.screen_diagonal, p.description
+`;
+
 const GET_AVAILABLE_DB = `
 SELECT a.storage 
 FROM available AS a
-WHERE a.id = $1 AND a.product_id = $2;`;
+WHERE a.id = $1 AND a.product_id = $2
+`;
 
 const INSERT_PRODUCT_DB = 'INSERT INTO cart (user_id, product_id, available_id) VALUES ($1, $2, $3)';
 const DELETE_PRODUCT_DB = (all) => `
@@ -25,7 +50,7 @@ WHERE
     id IN (
         SELECT id
         FROM cart
-        WHERE available_id = $1
+        WHERE user_id = $1 AND product_id = $2 AND available_id = $3
         LIMIT ${all}
     );
 `;
@@ -37,7 +62,7 @@ class Cart {
 		const per = await User.permissions(req, res);
 		if (!per) return;
 
-		let {rows, err} = await this.db.query(GET_PRODUCTS_DB(GET_PRODUCTS_BY_ID), [per.id]);
+		let {rows, err} = await this.db.query(GET_PRODUCTS_BY_ID, [per.id]);
 
 		if (err) {
 			res.status(400).json(err.message);
@@ -80,14 +105,14 @@ class Cart {
 		const per = await User.permissions(req, res);
 		if (!per) return;
 
-		const {available_id, isAll} = req.body;
+		const {product_id, available_id, isAll} = req.body;
 
 		if (typeof(+available_id) !== 'number') {
 			res.status(400).json("Don't have a parameter product_id");
 			return false;
 		}
 
-		const {err} = await this.db.query(DELETE_PRODUCT_DB(isAll ? 'ALL' : 1), [available_id]);
+		const {err} = await this.db.query(DELETE_PRODUCT_DB(isAll ? 'ALL' : 1), [per.id, product_id, available_id]);
 
 		if (err) {
 			res.status(400).json(err.message);

@@ -16,7 +16,8 @@ class Product extends Component {
 		this.state = {
 			isAdded: false,
 			isRemove: false,
-			isDisabled: false
+			isDisabled: false,
+			counter: props.product.counter
 		};
 
 		this.handleClickByButton = this.handleClickByButton.bind(this);
@@ -25,13 +26,12 @@ class Product extends Component {
 
 
 	handleClickByButton(e) {
+		const {product_id, available_id} = e.target.dataset;
+
 		store.dispatch(request({
 			url: API_PRODUCT_CART + (this.props.isRemove ? 'remove' : 'add'),
 			method: 'POST',
-			body: {
-				product_id: e.target.dataset.id,
-				available_id: e.target.dataset.available_id
-			},
+			body: {product_id, available_id},
 			success: this.handleResponseFromServer
 		}));
 
@@ -43,24 +43,30 @@ class Product extends Component {
 
 	handleResponseFromServer(response) {
 		if (response) {
-			this.setState({
-				[this.props.isRemove ? 'isRemoved' : 'isAdded']: true
-			});
+			const state = this.state;
+
+			state[this.props.isRemove ? 'isRemove' : 'isAdded'] = true;
+			state.isDisabled = false;
+
+			if (this.props.isRemove) {
+				state.counter -= 1;
+			}
+
+			this.setState(state);
 		}
 	}
 
 
-	renderButton(id, available_id) {
-
+	renderButton(product_id, available_id, counter) {
 		if (this.props.isRemove) {
 			return (
-				this.state.isRemove ?
+				counter === 0 && this.state.isRemove ?
 					<div className="tooltip removed">
 						<p>Removed</p>
 					</div> :
 					<button
 						className='btn btn-remove-cart'
-						data-id={id}
+						data-product_id={product_id}
 						data-available_id={available_id}
 						disabled={this.state.isDisabled}
 						onClick={this.handleClickByButton}
@@ -76,7 +82,7 @@ class Product extends Component {
 				</div> :
 				<button
 					className='btn btn-add-cart'
-					data-id={id}
+					data-product_id={product_id}
 					data-available_id={available_id}
 					disabled={this.state.isDisabled}
 					onClick={this.handleClickByButton}
@@ -107,14 +113,14 @@ class Product extends Component {
 
 								{
 									this.props.isRemove ?
-										<p>Counter: <span>{product.counter}</span></p>
+										<p>Counter: <span>{this.state.counter}</span></p>
 										: ''
 								}
 
 							</div>
 
 							<div className="footer-product">
-								{this.renderButton(product.id, product.available_id)}
+								{this.renderButton(product.product_id, product.available_id, this.state.counter)}
 								<p className='price'>{this.props.price} uah</p>
 							</div>
 						</div> :

@@ -1,3 +1,5 @@
+@import "variables.scss";
+
 .c-user {
   padding: 20px 20px 40px;
   background: #fff;
@@ -16,6 +18,18 @@
 
     a {
       margin-top: 5px;
+    }
+  }
+
+  .btn {
+    color: #fff;
+    background: $darkBlue;
+    transition: all .3s ease-in-out;
+    &[disabled]:hover {
+      background: $darkBlue;
+    }
+    &:hover {
+      background: $red;
     }
   }
 }
