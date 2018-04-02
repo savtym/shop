@@ -6,6 +6,7 @@ import './User.css';
 import Preloader from "components/common/preloader/Preloader";
 import request from "redux/actions/authAPI";
 import Product from "components/common/product/Product";
+import {removeToken} from "../../../redux/actions/user";
 
 const API_CLEAR_CART = '/api/v1/cart/clear';
 const API_GET_PRODUCTS_CART = '/api/v1/cart/';
@@ -22,6 +23,7 @@ class User extends Component {
 		};
 
 
+		this.handleClickSignOut = this.handleClickSignOut.bind(this);
 		this.responseFromServer = this.responseFromServer.bind(this);
 		this.handleClickByClearCart = this.handleClickByClearCart.bind(this);
 		this.responseFromServerClearCart = this.responseFromServerClearCart.bind(this);
@@ -65,6 +67,15 @@ class User extends Component {
 	}
 
 
+	handleClickSignOut() {
+		this.props.dispatch(removeToken());
+		this.props.history.push('/', {
+			currentPage: window.location.pathname,
+			search: window.location.search
+		});
+	}
+
+
 	render() {
 		if (this.state.isPreloader) return (<div className="c-user"><Preloader/></div>);
 
@@ -75,13 +86,24 @@ class User extends Component {
 				<div className="cart">
 					<h2>Your cart</h2>
 
-					<button
-						className="btn btn-clear-cart"
-						onClick={this.handleClickByClearCart}
-						disabled={this.state.isDisabledClearCart}
-					>
-						Clear cart
-					</button>
+					<div className='block-btn'>
+						<button
+							className='btn btn-sign-out'
+							onClick={this.handleClickSignOut}
+						>
+							Sign out
+						</button>
+					</div>
+
+					<div className="block-btn">
+						<button
+							className="btn btn-clear-cart"
+							onClick={this.handleClickByClearCart}
+							disabled={this.state.isDisabledClearCart}
+						>
+							Clear cart
+						</button>
+					</div>
 
 					<div className="row">
 					{

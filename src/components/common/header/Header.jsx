@@ -14,7 +14,6 @@ class Header extends Component {
 		super(props);
 
 		this.handleCLickUser = this.handleCLickUser.bind(this);
-		this.handleCLickLogout = this.handleCLickLogout.bind(this);
 	}
 
 
@@ -27,14 +26,6 @@ class Header extends Component {
 
 	}
 
-
-	handleCLickLogout() {
-		this.props.dispatch(removeToken());
-		this.props.history.push('/', {
-			currentPage: window.location.pathname,
-			search: window.location.search
-		});
-	}
 
 
 	render() {
