@@ -1,0 +1,28 @@
+/*
+    screen sizes
+*/
+/*
+  colors
+*/
+.c-user {
+  padding: 20px 20px 40px;
+  background: #fff; }
+  .c-user .c-preloader {
+    margin-top: 0;
+    padding-top: 40px; }
+  .c-user .c-product {
+    margin-top: 20px; }
+  .c-user .msg {
+    margin-top: 10px; }
+    .c-user .msg a {
+      margin-top: 5px; }
+  .c-user .block-btn {
+    margin-top: 10px; }
+  .c-user .btn {
+    color: #fff;
+    background: #546c78;
+    transition: all .3s ease-in-out; }
+    .c-user .btn[disabled]:hover {
+      background: #546c78; }
+    .c-user .btn:hover {
+      background: #f66d6e; }

@@ -1,0 +1,39 @@
+/*
+    screen sizes
+*/
+/*
+  colors
+*/
+.c-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 55px;
+  padding: 0 15px;
+  background: #fff;
+  border-bottom: 2px solid #c2cfd6;
+  z-index: 9999; }
+  .c-header .left {
+    display: flex;
+    align-items: center;
+    padding-left: 20px; }
+    .c-header .left > ul {
+      padding-left: 20px; }
+      .c-header .left > ul li {
+        padding: 0 15px; }
+  .c-header .logo {
+    display: block;
+    width: 115px;
+    height: 36px;
+    background: url("~images/logo.svg") no-repeat;
+    background-size: 100% 100%; }
+  .c-header .right {
+    display: flex;
+    align-items: center;
+    padding-right: 40px; }
+    .c-header .right button {
+      font-size: 14px; }
