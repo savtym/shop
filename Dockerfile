@@ -14,6 +14,7 @@ COPY package*.json ./
 RUN npm i -D
 RUN npm i -g db-migrate
 RUN npm i -g db-migrate-pg
+RUN npm i -g nodemon
 # If you are building your code for production
 # RUN npm install --only=production
 

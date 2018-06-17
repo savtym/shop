@@ -2,6 +2,7 @@ version: '2'
 services:
   api:
     build: .
+    command: nodemon app/server.js
     volumes:
       - .:/app
     image: shop_api
